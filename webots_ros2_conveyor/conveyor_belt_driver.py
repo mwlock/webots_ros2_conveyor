@@ -31,10 +31,17 @@
 
 import rclpy
 
+SPEED = 0.5
+
 class ConveyorBeltDriver:
     def init(self, webots_node, properties):
         self.__robot = webots_node.robot
         self.__timestep = int(self.__robot.getBasicTimeStep())
+
+        # Get belt_motor
+        self.__belt_motor = self.__robot.getDevice('belt_motor')
+        self.__belt_motor.setPosition(float('inf'))
+        self.__belt_motor.setVelocity(SPEED)
 
         # ROS interface
         rclpy.init(args=None)
