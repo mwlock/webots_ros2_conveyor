@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<robot name="conveyor_2">
+    <webots>
+        <plugin type="webots_ros2_conveyor.conveyor_belt_driver.ConveyorBeltDriver" />
+    </webots>
+</robot>

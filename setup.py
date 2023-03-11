@@ -1,4 +1,7 @@
+"""webots_ros2_conveyor package setup file."""
+
 from setuptools import setup
+
 
 package_name = 'webots_ros2_conveyor'
 data_files = []
@@ -8,9 +11,16 @@ data_files.append(('share/' + package_name + '/worlds', [
     'worlds/ure.wbt',
 ]))
 data_files.append(('share/' + package_name + '/resource', [
-    'resource/universal_robots_ure.urdf'
+    'resource/conveyor_1.urdf',
+    'resource/conveyor_2.urdf',
+    'resource/conveyor_3.urdf',
 ]))
 data_files.append(('share/' + package_name, ['package.xml']))
+
+# Proto files
+data_files.append(('share/' + package_name + '/protos', [
+    'protos/ConveyorBelt.proto',
+]))
 
 setup(
     name=package_name,

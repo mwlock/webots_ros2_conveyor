@@ -31,9 +31,12 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/devices/robotiq/protos/Robotiq3fGripper.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/robots/universal_robots/protos/UR5e.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/robots/universal_robots/protos/UR10e.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/factory/conveyors/protos/ConveyorBelt.proto"
+
+# EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/factory/conveyors/protos/ConveyorBelt.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/factory/containers/protos/PlasticCrate.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/drinks/protos/Can.proto"
+
+IMPORTABLE EXTERNPROTO "../protos/ConveyorBelt.proto"
 
 WorldInfo {
   info [
@@ -375,6 +378,7 @@ UR10e {
 ConveyorBelt {
   translation 3.18 -1.05 0
   rotation 0 0 1 3.141592
+  name "conveyor_1"
   size 8 0.7 0.6
   appearance CorrugatedMetal {
     textureTransform TextureTransform {
@@ -387,7 +391,7 @@ ConveyorBelt {
 ConveyorBelt {
   translation 1.77 2.55 0.75
   rotation 0 0 1 -1.5707973071795864
-  name "conveyor belt(2)"
+  name "conveyor_2"
   size 10 0.15 0.15
   appearance CorrugatedMetal {
     textureTransform TextureTransform {
@@ -400,7 +404,7 @@ ConveyorBelt {
 ConveyorBelt {
   translation 0 0.69 0
   rotation 0 1 0 0
-  name "conveyor belt(1)"
+  name "conveyor_3"
   size 13 0.5 0.25
   appearance CorrugatedMetal {
     textureTransform TextureTransform {

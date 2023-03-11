@@ -32,8 +32,24 @@ from webots_ros2_driver.utils import controller_url_prefix
 def get_ros2_nodes(*args):
     package_dir = get_package_share_directory('webots_ros2_conveyor')
 
-    return [
-    ]
+    conveyors = ["conveyor_1", "conveyor_2", "conveyor_3"]
+    robot_descriptions = [pathlib.Path(os.path.join(
+        package_dir, 'resource', f"{x}.urdf")).read_text() for x in conveyors]
+    
+    conveyor_drivers = []
+    for index, robot_description in enumerate(robot_descriptions):
+        conveyor_drivers.append(Node(
+            package='webots_ros2_driver',
+            executable='driver',
+            output='screen',
+            additional_env={
+                'WEBOTS_CONTROLLER_URL': controller_url_prefix() + f"conveyor_{index+1}"},
+            parameters=[
+                {'robot_description': robot_description},
+            ]
+        ))
+
+    return conveyor_drivers
 
 
 def generate_launch_description():
