@@ -30,6 +30,7 @@
 """ROS2 Camera Driver for Webots"""
 
 import rclpy
+from sensor_msgs.msg import PointCloud2
 
 SPEED = 0.5
 
@@ -39,16 +40,29 @@ class CameraDriver:
         self.__robot_name = self.__robot.getName()
         self.__timestep = int(self.__robot.getBasicTimeStep())
 
-        # Get camera
+        # Get camera and range finder devices
         self.__camera = self.__robot.getDevice('camera')
+        self.__range_finder = self.__robot.getDevice('range-finder')
 
-        # Enable camera
+        # Enable camera and range finder
         self.__camera.enable(self.__timestep)
+        self.__range_finder.enable(self.__timestep)
 
         # ROS interface
         rclpy.init(args=None)
         self.__node = rclpy.create_node(f"{self.__robot.getName()}_driver")
         self.__node.get_logger().info(f"Camera Driver for {self.__robot.getName()} initialized")
 
+        # Create publishers
+        self.__rgbd_publisher = self.__node.create_publisher(PointCloud2, f"{self.__robot_name}/camera/rgbd_image", 1)
+
     def step(self):
         rclpy.spin_once(self.__node, timeout_sec=0)
+
+        image = self.__camera.getImage()
+        # depth = self.__range_finder.getRangeImage()
+
+        # Publish RGBD image
+        # self.__node.get_logger().info(type(image))
+        # self.__node.get_logger().info(type(depth))
+        # self.__node.get_logger().info(image)

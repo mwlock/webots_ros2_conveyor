@@ -8,6 +8,12 @@
             </ros>
         </device>
 
+        <device reference="range-finder" type="RangeFinder">
+            <ros>
+                <topicName>/cambot_1/depth</topicName>
+            </ros>
+        </device>
+
         <plugin type="webots_ros2_conveyor.camera_driver.CameraDriver" />
     </webots>
 
