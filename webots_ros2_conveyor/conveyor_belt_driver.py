@@ -30,12 +30,14 @@
 """ROS2 Conveyor Belt Driver"""
 
 import rclpy
+from geometry_msgs.msg import Twist
 
 SPEED = 0.5
 
 class ConveyorBeltDriver:
     def init(self, webots_node, properties):
         self.__robot = webots_node.robot
+        self.__robot_name = self.__robot.getName()
         self.__timestep = int(self.__robot.getBasicTimeStep())
 
         # Get belt_motor
@@ -46,6 +48,18 @@ class ConveyorBeltDriver:
         # ROS interface
         rclpy.init(args=None)
         self.__node = rclpy.create_node(f"{self.__robot.getName()}_driver")
+        self.__node.get_logger().info(f"Conveyor Belt Driver for {self.__robot.getName()} initialized")
+
+        # State
+        self.__target_twist = Twist()
+        self.__target_twist.linear.x = SPEED
+
+        # Belt Motor Subscriber
+        self.__node.create_subscription(Twist, f"{self.__robot_name}/cmd_vel", self.__cmd_vel_callback, 1)
+
+    def __cmd_vel_callback(self, twist: Twist):
+        self.__target_twist = twist
+        self.__belt_motor.setVelocity(self.__target_twist.linear.x)        
 
     def step(self):
         rclpy.spin_once(self.__node, timeout_sec=0)
