@@ -33,23 +33,26 @@ def get_ros2_nodes(*args):
     package_dir = get_package_share_directory('webots_ros2_conveyor')
 
     conveyors = ["conveyor_1", "conveyor_2", "conveyor_3"]
+    cambots = ["cambot_1", "cambot_2", "cambot_3"]
+    robots = conveyors + cambots
+
     robot_descriptions = [pathlib.Path(os.path.join(
-        package_dir, 'resource', f"{x}.urdf")).read_text() for x in conveyors]
+        package_dir, 'resource', f"{x}.urdf")).read_text() for x in robots]
     
-    conveyor_drivers = []
+    robots_nodes = []
     for index, robot_description in enumerate(robot_descriptions):
-        conveyor_drivers.append(Node(
+        robots_nodes.append(Node(
             package='webots_ros2_driver',
             executable='driver',
             output='screen',
             additional_env={
-                'WEBOTS_CONTROLLER_URL': controller_url_prefix() + f"conveyor_{index+1}"},
+                'WEBOTS_CONTROLLER_URL': controller_url_prefix() + f"{robots[index]}"},
             parameters=[
                 {'robot_description': robot_description},
             ]
         ))
 
-    return conveyor_drivers
+    return robots_nodes
 
 
 def generate_launch_description():

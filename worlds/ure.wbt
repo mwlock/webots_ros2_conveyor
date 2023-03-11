@@ -505,3 +505,39 @@ Can {
   translation 6.3 -0.83 0.66
   name "can(8)"
 }
+Robot {
+  translation 0.74 -1.08 1.38
+  rotation -0.577349935856137 0.577349935856137 0.5773509358560258 2.09439
+  children [
+    Camera {
+      width 256
+      height 512
+    }
+  ]
+  name "cambot_1"
+  controller "<extern>"
+}
+Robot {
+  translation 1.77 0.88 1.38
+  rotation -0.577349935856137 0.577349935856137 0.5773509358560258 2.09439
+  children [
+    Camera {
+      width 256
+      height 512
+    }
+  ]
+  name "cambot_2"
+  controller "<extern>"
+}
+Robot {
+  translation -0.86 0.67 0.87
+  rotation -0.577349935856137 0.577349935856137 0.5773509358560258 2.09439
+  children [
+    Camera {
+      width 256
+      height 512
+    }
+  ]
+  name "cambot_3"
+  controller "<extern>"
+}

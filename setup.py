@@ -14,6 +14,9 @@ data_files.append(('share/' + package_name + '/resource', [
     'resource/conveyor_1.urdf',
     'resource/conveyor_2.urdf',
     'resource/conveyor_3.urdf',
+    'resource/cambot_1.urdf',
+    'resource/cambot_2.urdf',
+    'resource/cambot_3.urdf',
 ]))
 data_files.append(('share/' + package_name, ['package.xml']))
 

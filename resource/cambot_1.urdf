@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<robot name="cambot_1">
+    <webots>
+    
+        <device reference="camera" type="Camera">
+            <ros>
+                <topicName>/cambot_1/camera</topicName>
+            </ros>
+        </device>
+
+        <plugin type="webots_ros2_conveyor.camera_driver.CameraDriver" />
+    </webots>
+
+</robot>
