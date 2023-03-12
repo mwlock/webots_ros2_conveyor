@@ -38,19 +38,21 @@ def get_ros2_nodes(*args):
 
     robot_descriptions = [pathlib.Path(os.path.join(
         package_dir, 'resource', f"{x}.urdf")).read_text() for x in robots]
-    
+
     robots_nodes = []
     for index, robot_description in enumerate(robot_descriptions):
-        robots_nodes.append(Node(
-            package='webots_ros2_driver',
-            executable='driver',
-            output='screen',
-            additional_env={
-                'WEBOTS_CONTROLLER_URL': controller_url_prefix() + f"{robots[index]}"},
-            parameters=[
-                {'robot_description': robot_description},
-            ]
-        ))
+        robots_nodes.append(
+            Node(
+                package='webots_ros2_driver',
+                namespace=f"{robots[index]}",
+                executable='driver',
+                output='screen',
+                additional_env={
+                    'WEBOTS_CONTROLLER_URL': controller_url_prefix() + f"{robots[index]}"},
+                parameters=[
+                    {'robot_description': robot_description},
+                ]
+            ))
 
     return robots_nodes
 

@@ -419,7 +419,6 @@ ConveyorBelt {
   }
   borderHeight 0
   speed 0.062
-  acceleration 0.012
 }
 PlasticCrate {
   translation 0.22 0.68 0.25
