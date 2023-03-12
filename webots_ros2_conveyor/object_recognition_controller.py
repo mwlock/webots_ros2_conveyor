@@ -31,9 +31,10 @@
 
 
 import rclpy
-from sensor_msgs.msg import PointCloud2
 
+from sensor_msgs.msg import PointCloud2
 SPEED = 0.5
+
 
 class ObjectRecognitionDriver:
     def init(self, webots_node, properties):
@@ -53,16 +54,12 @@ class ObjectRecognitionDriver:
         # ROS interface
         rclpy.init(args=None)
         self.__node = rclpy.create_node(f"{self.__robot.getName()}_driver")
-        self.__node.get_logger().info(f"Recognition Driver for {self.__robot.getName()} initialized")
+        self.__node.get_logger().info(
+            f"Recognition Driver for {self.__robot.getName()} initialized")
 
         # Create publishers
-        self.__rgbd_publisher = self.__node.create_publisher(PointCloud2, f"{self.__robot_name}/camera/rgbd_image", 1)
+        self.__rgbd_publisher = self.__node.create_publisher(
+            PointCloud2, f"{self.__robot_name}/camera/rgbd_image", 1)
 
     def step(self):
         rclpy.spin_once(self.__node, timeout_sec=0)
-
-        number_of_objects = self.__camera.getRecognitionNumberOfObjects()
-        objects = self.__camera.getRecognitionObjects()
-
-        for object in objects:
-            print(object.getModel())
