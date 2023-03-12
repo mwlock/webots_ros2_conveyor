@@ -454,10 +454,6 @@ Can {
   name "can(15)"
 }
 Can {
-  translation 1.77 4.7 0.96
-  name "can(16)"
-}
-Can {
   translation 1.77 5.6 0.96
   name "can(17)"
 }
@@ -505,6 +501,22 @@ SolidBox {
   translation 4.9 -0.83 0.65
   name "box(12)"
   size 0.1 0.1 0.1
+  appearance PBRAppearance {
+    baseColor 0 0 1
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    metalness 0
+  }
+  physics Physics {
+  }
+}
+SolidBox {
+  translation 1.77 4.7 1.06
+  name "box(11)"
+  size 0.1 0.4 0.3
   appearance PBRAppearance {
     baseColor 0 0 1
     baseColorMap ImageTexture {
