@@ -14,7 +14,7 @@
             </ros>
         </device>
 
-        <plugin type="webots_ros2_conveyor.camera_driver.CameraDriver" />
+        <plugin type="webots_ros2_conveyor.object_recognition_controller.ObjectRecognitionDriver" />
     </webots>
 
 </robot>

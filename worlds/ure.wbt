@@ -70,6 +70,12 @@ Floor {
   appearance ThreadMetalPlate {
   }
 }
+Orange {
+  translation -2.43 0.57 0.59
+}
+Apple {
+  translation -2.29 0.74 0.5
+}
 SquareManhole {
   translation 0.560459 -1.782 -0.03
   rotation 0 0 1 -1.5707963071795863
@@ -540,6 +546,8 @@ Robot {
     Camera {
       width 256
       height 512
+      recognition Recognition {
+      }
     }
   ]
   name "cambot_1"
@@ -556,6 +564,8 @@ Robot {
     Camera {
       width 256
       height 512
+      recognition Recognition {
+      }
     }
   ]
   name "cambot_2"
@@ -572,6 +582,8 @@ Robot {
     Camera {
       width 256
       height 512
+      recognition Recognition {
+      }
     }
   ]
   name "cambot_3"
